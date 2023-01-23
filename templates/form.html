@@ -95,13 +95,38 @@ Form Page
                             </div>
                         </div>
                         <div class="card-title">
-                            <label for="raw_smileValidate" class="form-label">Enter or Paste Raw
-                                Sequence &nbsp;</label>
-                            <input type="text" class="form-input" id="raw_smileValidate" required=""
-                                v-model='uniport_id' @input="">
-                            <div class="invalid-feedback">
-                                Please select a valid ID.
+                            <div class="row">
+                                <div class="col">
+                                    <label for="raw_smileValidate" class="form-label">Enter or Paste Raw
+                                        Sequence &nbsp;</label>
+                                    <textarea class="form-input" id="raw_smileValidate" required="" v-model='smiles_id'
+                                        @input=""></textarea>
+                                    <div class="invalid-feedback">
+                                        Please select a valid ID.
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p class="btn btn-outline-primary bi-plus-circle-fill" @click="addSmiletoDisplay()">
+                                    </p>
+                                </div>
                             </div>
+                        </div>
+                        <div id="smiles_list_display"
+                            class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                            <table class="table table-hover table-borderless">
+                                <thead>
+                                    <th>SMILES</th>
+                                    <th>Actions</th>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in smiles_array">
+                                        <td>{{ item }}</td>
+                                        <td>
+                                            <p class="btn btn-outline-danger">Delete</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="">
                             <label for="raw_smileValidate" class="form-label">Enter Similarity Percentage

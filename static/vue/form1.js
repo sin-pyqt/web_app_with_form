@@ -8,6 +8,8 @@ createApp({
             entity: '',
             searchUsing: '',
             uniport_id: '',
+            smiles_id: '',
+            smiles_array: [],
         }
     },
     watch: {
@@ -29,6 +31,10 @@ createApp({
         },
     },
     methods: {
+        addSmiletoDisplay() {
+            this.smiles_array.push(this.smiles_id),
+                this.smiles_id = ''
+        },
         change_1() {
             document.getElementById("step_2").style.display = "block";
         },
