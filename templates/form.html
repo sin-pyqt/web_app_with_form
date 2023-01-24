@@ -122,7 +122,9 @@ Form Page
                                     <tr v-for="item in smiles_array">
                                         <td>{{ item }}</td>
                                         <td>
-                                            <p class="btn btn-outline-danger">Delete</p>
+                                            <p class="btn btn-outline-danger" @click="removeSmilefromDisplay(item)">
+                                                Delete
+                                            </p>
                                         </td>
                                     </tr>
                                 </tbody>

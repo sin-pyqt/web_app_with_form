@@ -31,6 +31,14 @@ createApp({
         },
     },
     methods: {
+        removeSmilefromDisplay(item) {
+            function arrayRemove(arr, value) {
+                return arr.filter(function (val) {
+                    return val != value;
+                });
+            }
+            this.smiles_array = arrayRemove(this.smiles_array, item);
+        },
         addSmiletoDisplay() {
             this.smiles_array.push(this.smiles_id),
                 this.smiles_id = ''
