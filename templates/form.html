@@ -65,7 +65,7 @@ Form Page
         <div class="col">
             <div class="card">
                 <div id="uniport_ID_dialog" class="card-body" style="display:none;">
-                    <form class="needs-validation" novalidate="">
+                    <form class="needs-validation" novalidate="" onsubmit="return false;">
                         <p class='card-title'>Search using the Uniport ID</p>
                         <div class="col-md-3">
                             <label for="uniportidValidate" class="form-label">Enter the Uniport ID</label>
@@ -76,7 +76,8 @@ Form Page
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" id="uniport_ID_dialog_submit" @click="getUniportdata()"
+                                class="btn btn-primary">Submit</button>
                             <button style="visibility: hidden;"></button>
                             <button type="reset" @click="reset()" class="btn btn-secondary">Reset</button>
                         </div>
@@ -158,6 +159,46 @@ Form Page
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped" v-for="item in resp_uniport">
+                <tbody v-for="i in item.target_components">
+                    <tr>
+                        <td>accession</td>
+                        <td>{{i.accession}}</td>
+                    </tr>
+                    <tr>
+                        <td>component_description</td>
+                        <td>{{i.component_description}}</td>
+                    </tr>
+                    <tr>
+                        <td>component_id</td>
+                        <td>{{i.component_id}}</td>
+                    </tr>
+                    <tr>
+                        <td>component_type</td>
+                        <td>{{i.component_type}}</td>
+                    </tr>
+                    <tr>
+                        <td>relationship</td>
+                        <td>{{i.relationship}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <div v-for="item in resp_uniport">
+                <table class="table table-striped" v-for="i in item.target_components">
+                    <tbody v-for="j in i.target_component_synonyms">
+                        <tr v-for="(value, key) in j">
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

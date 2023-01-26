@@ -10,6 +10,7 @@ createApp({
             uniport_id: '',
             smiles_id: '',
             smiles_array: [],
+            resp_uniport: [],
         }
     },
     watch: {
@@ -31,6 +32,16 @@ createApp({
         },
     },
     methods: {
+        async getUniportdata() {
+            try {
+                let response = await fetch("https://www.ebi.ac.uk/chembl/api/data/target/search?limit=1000&offset=0&format=json&q="+this.uniport_id);
+                temp = await response.json();
+                this.resp_uniport = temp.targets
+                console.log(temp)
+            } catch (error) {
+                console.log(error);
+            }
+        },
         removeSmilefromDisplay(item) {
             function arrayRemove(arr, value) {
                 return arr.filter(function (val) {
