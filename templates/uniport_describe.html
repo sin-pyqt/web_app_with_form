@@ -1,25 +1,42 @@
 {% extends 'base.html' %}
 {% block title %}
-Table Page
+Uniport Page
 {% endblock %}
 {% block content %}
 <main>
     <section>
+        <h2>Entered Id is :- {{uniport_id}}</h2>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Datatables</h5>
+                <h5 class="card-title">Primary Details</h5>
+                <table class="table table-striped">
+                    <tbody>
+                        {% for key, value in primary.items() %}
+                        <tr>
+                            <td>{{key}}</td>
+                            <td>{{value}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">target_component_synonyms</h5>
 
                 <!-- Table with stripped rows -->
                 <table class="table datatable">
                     <thead>
                         <tr>
-                            {% for x in headers %}
+                            {% for x in syn[0].keys() %}
                             <th scope="col">{{x}}</th>
                             {% endfor %}
                         </tr>
                     </thead>
                     <tbody>
-                        {% for x in response %}
+                        {% for x in syn %}
                         <tr>
                             {% for key, value in x.items() %}
                             <td>{{value}}</td>
@@ -32,8 +49,6 @@ Table Page
 
             </div>
         </div>
-
     </section>
-
-</main><!-- End #main -->
+</main>
 {% endblock %}

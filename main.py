@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
 from controllers.api_Controller_1 import resp
 from controllers.login_Controller import isLogin
+from controllers.uniport_api_call_1 import (
+    get_uniport_primary_details,
+    get_uniport_target_component_synonyms,
+)
 
 app = Flask(__name__)
 
@@ -10,11 +14,11 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/login", methods=['GET'])
+@app.route("/login", methods=["GET"])
 def login():
     params = request.args
-    u_name = params.get('username')
-    p_name = params.get('password')
+    u_name = params.get("username")
+    p_name = params.get("password")
     login = isLogin(u_name, p_name)
     if login:
         return "Login Success"
@@ -34,6 +38,22 @@ def table_page_1():
 @app.route("/form")
 def form():
     return render_template("form.html")
+
+
+@app.route("/uniport", methods=["GET"])
+def uniport_describe():
+    params = request.args
+    uniport_id = params.get("uniport_id")
+    uniport_primary_details = get_uniport_primary_details(uniport_id)
+    uniport_target_component_synonyms = get_uniport_target_component_synonyms(
+        uniport_id
+    )
+    return render_template(
+        "uniport_describe.html",
+        uniport_id=uniport_id,
+        primary=uniport_primary_details,
+        syn=uniport_target_component_synonyms,
+    )
 
 
 if __name__ == "__main__":

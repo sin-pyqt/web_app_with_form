@@ -65,12 +65,12 @@ Form Page
         <div class="col">
             <div class="card">
                 <div id="uniport_ID_dialog" class="card-body" style="display:none;">
-                    <form class="needs-validation" novalidate="">
+                    <form class="needs-validation" novalidate="" action="/uniport">
                         <p class='card-title'>Search using the Uniport ID</p>
                         <div class="col-md-3">
                             <label for="uniportidValidate" class="form-label">Enter the Uniport ID</label>
                             <input type="text" class="form-input" id="uniportidValidate" required=""
-                                v-model='uniport_id' @input="">
+                                v-model='uniport_id' name="uniport_id" @input="">
                             <div class="invalid-feedback">
                                 Please select a valid ID.
                             </div>
