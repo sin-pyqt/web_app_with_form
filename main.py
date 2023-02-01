@@ -56,6 +56,17 @@ def uniport_describe():
     )
 
 
+@app.route("/showSelectedUniport")
+def showSelectedUniport():
+    str = ""
+    params = request.args
+    for key, value in params.items():
+        # print(key, value)
+        # print(value)
+        str = str + " " + value + " "
+    return "HelooWorld" + "<br/>" + "Selected values are -" + str
+
+
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True
     app.config["TEMPLATES_AUTO_RELOAD"] = True

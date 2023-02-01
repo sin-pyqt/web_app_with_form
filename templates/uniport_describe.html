@@ -25,28 +25,34 @@ Uniport Page
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">target_component_synonyms</h5>
-
-                <!-- Table with stripped rows -->
-                <table class="table datatable">
-                    <thead>
-                        <tr>
-                            {% for x in syn[0].keys() %}
-                            <th scope="col">{{x}}</th>
+                <form action="/showSelectedUniport" method="get">
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                {% for x in syn[0].keys() %}
+                                <th scope="col">{{x}}</th>
+                                {% endfor %}
+                                <th scope="col">Selection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in range(syn|length) %}
+                            <tr>
+                                {% for key, value in syn[x].items() %}
+                                <td>{{value}}</td>
+                                {% endfor %}
+                                <td><input type="checkbox" value="{{x+1}}" name="select{{x*100/10}}"></td>
+                            </tr>
                             {% endfor %}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for x in syn %}
-                        <tr>
-                            {% for key, value in x.items() %}
-                            <td>{{value}}</td>
-                            {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <!-- End Table with stripped rows -->
-
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+                    <span class="float-end">
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </span>
+                </form>
             </div>
         </div>
     </section>
