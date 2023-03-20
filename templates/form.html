@@ -4,7 +4,7 @@ Form Page
 {% endblock %}
 {% block content %}
 <div id="app">
-    <div class="row">
+    <div class="row" id="input">
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -12,7 +12,7 @@ Form Page
                         {% raw %}
                         {{ message }}
                     </h5>
-                    <form class="needs-validation" novalidate="">
+                    <form class="needs-validation" novalidate="" onsubmit="return false;">
                         <div class="base_form">
                             <div class="col-md-3">
                                 <label for="databaseValidate" class="form-label">Select Database</label>
@@ -53,7 +53,7 @@ Form Page
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" @click="baseInput()">Submit</button>
                                 <button style="visibility: hidden;"></button>
                                 <button type="reset" @click="reset()" class="btn btn-secondary">Reset</button>
                             </div>
@@ -65,9 +65,9 @@ Form Page
         <div class="col">
             <div class="card">
                 <div id="uniport_ID_dialog" class="card-body" style="display:none;">
-                    <form class="needs-validation" novalidate="" action="/uniport">
+                    <form class="needs-validation" novalidate="" onsubmit="return false;">
                         <p class='card-title'>Search using the Uniport ID</p>
-                        <div class="col-md-3">
+                        <div class=" col-md-3">
                             <label for="uniportidValidate" class="form-label">Enter the Uniport ID</label>
                             <input type="text" class="form-input" id="uniportidValidate" required=""
                                 v-model='uniport_id' name="uniport_id" @input="">
@@ -76,7 +76,7 @@ Form Page
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" @click="showResult()">Submit</button>
                             <button style="visibility: hidden;"></button>
                             <button type="reset" @click="reset()" class="btn btn-secondary">Reset</button>
                         </div>
@@ -160,6 +160,12 @@ Form Page
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row" id="result" style="display: none;">
+        <h1>ShowHide</h1>
+        <button class="btn-warning" @click="hideResult()">Go Back</button>
+        <iframe src="" id="resultFrame" frameborder="0"
+            style="width: 100%;height: 100%;"></iframe>
     </div>
 </div>
 <script src="/static/vue/form1.js"></script>

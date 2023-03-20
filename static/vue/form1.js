@@ -15,22 +15,22 @@ createApp({
     watch: {
         database(oldVal, newVal) {
         },
-        searchUsing(oldVal, newVal) {
-            if (oldVal === "Uniport ID") {
+    },
+    methods: {
+        baseInput() {
+            if (this.searchUsing === "Uniport ID") {
                 this.showUniportID_dialog()
             }
-            else if (oldVal === "SMILES") {
+            else if (this.searchUsing === "SMILES") {
                 this.showSmiles_dialog()
             }
-            else if (oldVal === "Sequence") {
+            else if (this.searchUsing === "Sequence") {
                 this.showSequence_dialog()
             }
             else {
 
             }
         },
-    },
-    methods: {
         removeSmilefromDisplay(item) {
             function arrayRemove(arr, value) {
                 return arr.filter(function (val) {
@@ -63,6 +63,20 @@ createApp({
             document.getElementById("uniport_ID_dialog").style.display = "none";
             document.getElementById("smiles_dialog").style.display = "none";
             document.getElementById("sequence_dialog").style.display = "block";
+        },
+        showResult() {
+            document.getElementById("resultFrame").src = "/uniport?uniport_id=" + this.uniport_id;
+            // wait till iframe is loaded
+            document.getElementById('resultFrame').onload = function () {       
+                setTimeout(() => {
+                    document.getElementById("input").style.display = "none";
+                    document.getElementById("result").style.display = "block";
+                }, 10);
+            }
+        },
+        hideResult() {
+            document.getElementById("input").style.display = "block";
+            document.getElementById("result").style.display = "none";
         },
         reset() {
             this.database = '';
